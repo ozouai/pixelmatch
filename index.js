@@ -9,15 +9,16 @@ function pixelmatch(img1, img2, output, width, height, options) {
     if (!options) options = {};
 
     var threshold = options.threshold === undefined ? 0.1 : options.threshold;
-
+    var startX = options.x === undefined ? 0 : options.x;
+    var startY = options.y === undefined ? 0 : options.y;
     // maximum acceptable square distance between two colors;
     // 35215 is the maximum possible value for the YIQ difference metric
     var maxDelta = 35215 * threshold * threshold,
         diff = 0;
 
     // compare each pixel of one image against the other one
-    for (var y = 0; y < height; y++) {
-        for (var x = 0; x < width; x++) {
+    for (var y = startY; y < height; y++) {
+        for (var x = startX; x < width; x++) {
 
             var pos = (y * width + x) * 4;
 
